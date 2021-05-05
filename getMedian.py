@@ -32,8 +32,9 @@ def getMedian(nodeTree):
     if abs(numLeft - numRight) == 1 and not num_total_isOdd:
         # attempting to get node+grandchild together for when the current node
         # is just one element ahead of the two nodes to be averaged
-        if leadBranch.child_left:
-            return ((leadBranch.child_left.value + nodeTree.value)/2)    
+        print("here")
+        if nodeTree.child_left:
+            return ((nodeTree.child_left.value + nodeTree.value)/2)    
         return ((leadBranch.value + nodeTree.value)/2)
     #return
     print(f" we have {num_total} nodes. Starting at node number : {whichNode} with value: {leadBranch.value} and median goal: {medianPosition}")
