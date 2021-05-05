@@ -21,6 +21,9 @@ def getMedian(nodeTree):
         return nodeTree.value
     medianPosition = num_total // 2
     leadBranch = nodeTree.child_left if numLeft>numRight else nodeTree.child_right
+    # I start traversing on the root node of the *leading branch*.
+    # so, I need to find first child node's relative position based on what branch
+    # the tree is skewed toward
     nodePosition = num_total - numRight - numTreeNodes(leadBranch.child_right) if numLeft > numRight else numLeft + numTreeNodes(leadBranch.child_left)
     whichNode = nodePosition
     treeRegister = leadBranch
@@ -35,14 +38,12 @@ def getMedian(nodeTree):
     #return
     print(f" we have {num_total} nodes. Starting at node number : {whichNode} with value: {leadBranch.value} and median goal: {medianPosition}")
     while treeRegister:
-        # edge case: if the median is current node and its grandchild
+        # edge case: if the median is a node and its grandchild
         if whichNode == medianPosition-1 and treeRegister.child_left.child_right and not num_total_isOdd:
-            print("ok")
             return((treeRegister.value + treeRegister.child_left.child_right.value)/2)
         # need to prioritize going to the smallest, non-visited value, especially
         # since I’m going from top to bottom
         if treeRegister.child_left is not None and whichNode >= medianPosition:
-            print("left")
             lagRegister = treeRegister
             treeRegister = treeRegister.child_left
             whichNode -= 1
@@ -61,7 +62,6 @@ def getMedian(nodeTree):
                 continue
 
         elif treeRegister.child_right is not None and (whichNode <= medianPosition):
-            print("right")
             # inch up the registers
             # order of inching up registers important so that we save where we were
             lagRegister = treeRegister
