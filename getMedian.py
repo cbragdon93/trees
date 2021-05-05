@@ -41,8 +41,9 @@ def getMedian(nodeTree):
         # edge case: if the median is a node and its grandchild
         if whichNode == medianPosition-1 and treeRegister.child_left.child_right and not num_total_isOdd:
             return((treeRegister.value + treeRegister.child_left.child_right.value)/2)
-        # need to prioritize going to the smallest, non-visited value, especially
-        # since I’m going from top to bottom
+        # navigate the tree based on if where I currently am is
+        # an over-shoot or an under-shoot of the median position,
+        # accounting for even-noded tree cases
         if treeRegister.child_left is not None and whichNode >= medianPosition:
             lagRegister = treeRegister
             treeRegister = treeRegister.child_left
@@ -55,6 +56,7 @@ def getMedian(nodeTree):
                 else:
                     continue
             elif abs(whichNode - medianPosition) == 1 and hitMidpoint:
+                # grandchild case again but after the traversal
                 if leadBranch.child_left and whichNode-1==medianPosition:
                     return ((leadBranch.child_left.value + nodeTree.value)/2)
                 return ((lagRegister.value + treeRegister.value)/2)
