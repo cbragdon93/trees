@@ -24,7 +24,7 @@ def getMedian(nodeTree):
     # I start traversing on the root node of the *leading branch*.
     # so, I need to find first child node's relative position based on what branch
     # the tree is skewed toward
-    nodePosition = num_total - numRight - numTreeNodes(leadBranch.child_right) if numLeft > numRight else numLeft + numTreeNodes(leadBranch.child_left)
+    nodePosition = num_total - 1 - numRight - numTreeNodes(leadBranch.child_right) if numLeft > numRight else numLeft + numTreeNodes(leadBranch.child_left)
     whichNode = nodePosition
     treeRegister = leadBranch
     lagRegister = nodeTree
@@ -32,11 +32,14 @@ def getMedian(nodeTree):
     if abs(numLeft - numRight) == 1 and not num_total_isOdd:
         # attempting to get node+grandchild together for when the current node
         # is just one element ahead of the two nodes to be averaged
-        print("here")
-        if nodeTree.child_left:
-            return ((nodeTree.child_left.value + nodeTree.value)/2)    
+        if leadBranch.child_left:
+            print(whichNode)
+            return ((nodeTree.value + leadBranch.child_left.value)/2)    
         return ((leadBranch.value + nodeTree.value)/2)
-    #return
+    
+    elif whichNode == medianPosition+1 and num_total_isOdd:
+        return leadBranch.value
+    
     print(f" we have {num_total} nodes. Starting at node number : {whichNode} with value: {leadBranch.value} and median goal: {medianPosition}")
     while treeRegister:
         # edge case: if the median is a node and its grandchild
