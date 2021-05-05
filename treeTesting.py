@@ -38,11 +38,10 @@ for i in myNumbers:
 x=(getMedian(testTree))
 print(f"tree Median, isolated case: {x}")
 print(f"expected Median, isolated case: {median(myNumbers)}")
-#%% test inserting
-p=myNode(None)
-p=insert(p,5)
-p=insert(p,4)
-p=insert(p,3)
-p=insert(p,9)
-p=insert(p,9)
-print(p.__dict__)
+#%% test left-skewed
+leftyTree=myNode(None)
+leftyValues = [10,8,6,9,11,5,7]
+for i in leftyValues:
+    leftyTree = insert(leftyTree, i)
+print(f"tree Median, left-skewed case: {getMedian(leftyTree)}")
+print(f"expected Median, isolated case: {median(leftyValues)}")
