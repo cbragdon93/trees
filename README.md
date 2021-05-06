@@ -13,3 +13,4 @@ This github page is an exploration of implementing and optimizing a Binary Searc
   - Input: `myNode` object
   - Output:  integer denoting the number of present nodes
 - treeTesting.py contains a script that executes a creation and appending of test trees (values were thought of arbitrarily). It then invokes `getMedian` after certain insertions, and compares the value acquired through `getMedian` and the value arising from calling `statistics.median` on a list version of the BST.
+- getMedianFaster.py is an experimental script where I am making improvements to the speed of getMedian.py
