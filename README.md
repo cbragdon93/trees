@@ -1,6 +1,6 @@
 # Trees
 ## About
-This github page is an exploration of implementing and optimizing a Binary Search Tree(BST) approach for insertions and median acquisition.
+This github page is an exploration of implementing and optimizing a Binary Search Tree(BST) approach for insertions and Online Median Finding.
 ## Contents
 - ‘myNode.py’ contains the `myNode` class, the object I use to create my trees.
 - ‘insert.py’ contains the function that inserts new values/`myNode` objects into a `myNode` object.
